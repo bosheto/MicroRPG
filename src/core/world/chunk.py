@@ -1,7 +1,10 @@
-from core.world.tiles.grass_tile import GrassTile
-from core.world.tiles.stone_tile import StoneTile
-from core.world.tiles.sand_tile import SandTile
+# from core.world.tiles.grass_tile import GrassTile
+# from core.world.tiles.stone_tile import StoneTile
+# from core.world.tiles.sand_tile import SandTile
 
+from core.world.tiles import *
+from core.position import Position
+from core.constants import CHUNK_SIZE
 
 import opensimplex
 
@@ -11,9 +14,8 @@ class Chunk:
         
         # opensimplex.seed(123)
         opensimplex.random_seed()
-        self.x = x
-        self.y = y
-        self.w, self.h = 16, 16
+        self.position = Position(x, y) 
+        self.w, self.h = CHUNK_SIZE, CHUNK_SIZE
         self.texture = texture
         self.chunk = []
         self.__generate_chunk()
@@ -28,17 +30,18 @@ class Chunk:
             
             row = []
             for x in range(self.w):                
-                n = opensimplex.noise2(self.x+ x, self.y + y)
                 row.append(self.__get_tile(x, y))
 
             self.chunk.append(row)
 
     def __get_tile(self, x, y):
-        n = opensimplex.noise2(self.x+ x, self.y + y)
+        pos = self.position.add(Position(x,y))
+        n = opensimplex.noise2(pos.X, pos.Y)
+
 
         if n < 0.01:
-            return SandTile(self.x + x * 32,self.y + y * 32 ,self.texture)
+            return SandTile(self.position.X + x ,self.position.Y + y ,self.texture)
         elif n < 0.2:
-            return GrassTile(self.x + x * 32,self.y + y * 32 ,self.texture)
+            return GrassTile(self.position.X + x ,self.position.Y + y  ,self.texture)
         else:
-            return StoneTile(self.x + x * 32,self.y + y * 32 ,self.texture)
+            return StoneTile(self.position.X + x ,self.position.Y + y,self.texture)

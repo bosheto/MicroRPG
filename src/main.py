@@ -13,8 +13,8 @@ img = pyray.load_image("src/assets/SpriteSheet.png")
 texture = pyray.load_texture_from_image(img)
 
 c = Chunk(0,0, texture)
-c2 = Chunk(16 * 32, 0, texture)
-c3 = Chunk(32 * 32, 0, texture)
+c2 = Chunk(16 * 16, 0, texture)
+c3 = Chunk(32 * 16, 0, texture)
 # Main game loop
 while not pyray.window_should_close():  # Detect window close button or ESC key
     # Update
@@ -25,7 +25,7 @@ while not pyray.window_should_close():  # Detect window close button or ESC key
     pyray.begin_drawing()
     pyray.clear_background(BLACK)
     c.draw()
-    c2.draw()
+    #c2.draw()
     c3.draw()
     pyray.draw_text('8', 4,50, 10, BLUE)
     pyray.end_drawing()
