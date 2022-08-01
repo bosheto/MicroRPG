@@ -10,11 +10,11 @@ import opensimplex
 
 class Chunk:
 
-    def __init__(self, x, y, texture):
+    def __init__(self, position, texture):
         
         # opensimplex.seed(123)
         opensimplex.random_seed()
-        self.position = Position(x, y) 
+        self.position = position
         self.w, self.h = CHUNK_SIZE, CHUNK_SIZE
         self.texture = texture
         self.chunk = []

@@ -11,10 +11,11 @@ class Tile:
     def __init__(self, x, y, tile_x, tile_y, texture):
         self.texture_x = tile_x
         self.texture_y = tile_y
-        self.position = Position(x * SPRITE_SIZE, y * SPRITE_SIZE)
+        self.position = Position(x, y)
         self.texture = texture 
 
 
     def draw(self):
+        pos = Position.to_screen_pos(self.position)
         rec = Rectangle(self.texture_x * SPRITE_SIZE, self.texture_y * SPRITE_SIZE , SPRITE_SIZE, SPRITE_SIZE)
-        draw_texture_rec(self.texture, rec, Vector2(self.position.X, self.position.Y), WHITE)
+        draw_texture_rec(self.texture, rec, Vector2(pos.X, pos.Y), WHITE)

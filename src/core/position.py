@@ -1,3 +1,4 @@
+from core.constants import *
 
 class Position:
 
@@ -10,3 +11,11 @@ class Position:
     
     def subtract(self, position):
         return Position(self.X - position.X, self.Y - position.Y)
+
+    @classmethod
+    def to_world_pos(self, x, y):
+        return Position(x / SPRITE_SIZE, y / SPRITE_SIZE)
+
+    @classmethod
+    def to_screen_pos(self, position):
+        return Position(position.X * SPRITE_SIZE, position.Y * SPRITE_SIZE)
