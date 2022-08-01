@@ -3,19 +3,21 @@ from raylib.colors import WHITE
 from core.position import Position
 from core.constants import SPRITE_SIZE
 
+
 class Tile:
     texture_x = 0
     texture_y = 0
+    tile_id = 0
     texture = None
 
-    def __init__(self, x, y, tile_x, tile_y, texture):
+    def __init__(self, tile_x, tile_y):
         self.texture_x = tile_x
         self.texture_y = tile_y
-        self.position = Position(x, y)
-        self.texture = texture 
 
 
-    def draw(self):
-        pos = Position.to_screen_pos(self.position)
+    def draw(self, position, texture):
+        pos = Position.to_screen_pos(position)
         rec = Rectangle(self.texture_x * SPRITE_SIZE, self.texture_y * SPRITE_SIZE , SPRITE_SIZE, SPRITE_SIZE)
-        draw_texture_rec(self.texture, rec, Vector2(pos.X, pos.Y), WHITE)
+        draw_texture_rec(texture, rec, Vector2(pos.X, pos.Y), WHITE)
+
+    
