@@ -1,9 +1,9 @@
 import pyray
 from pyray import BLACK, BLUE
-from core.chunk import Chunk
+from core.world.chunk import Chunk
 
 # Initialization
-SCREEN_WIDTH = 800
+SCREEN_WIDTH = 1240
 SCREEN_HEIGHT = 800
 
 pyray.init_window(SCREEN_WIDTH, SCREEN_HEIGHT,'MicroRPG')
