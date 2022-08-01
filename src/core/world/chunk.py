@@ -9,18 +9,18 @@ class Chunk:
 
     def __init__(self, x, y, texture):
         
-        opensimplex.seed(123)
-        
+        # opensimplex.seed(123)
+        opensimplex.random_seed()
         self.x = x
         self.y = y
-        self.w, self.h = 8, 8
+        self.w, self.h = 16, 16
         self.texture = texture
         self.chunk = []
         self.__generate_chunk()
     
     def draw(self):
-        for y in range(8):
-            for x in range(8):
+        for y in range(self.h):
+            for x in range(self.w):
                 self.chunk[y][x].draw()
 
     def __generate_chunk(self):
